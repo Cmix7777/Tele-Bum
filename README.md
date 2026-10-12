@@ -1,75 +1,22 @@
-# Nuxt Minimal Starter
+# Tele-Bum
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Простой редактор статей на Nuxt 3 и Editor.js. На главной странице вводишь заголовок, пишешь текст блоками (заголовки и абзацы), нажимаешь «Сохранить» и получаешь ссылку на страницу статьи.
 
-## Setup
+## Как это устроено
 
-Make sure to install dependencies:
+Редактор подключается только в браузере (Editor.js работает с DOM). Сохранённая статья уходит запросом `POST /api/articles` на серверный маршрут Nuxt, который кладёт её в файл `articles.json` и возвращает номер. Страница `/article/<номер>` забирает статью запросом `GET /api/articles/<номер>` и показывает заголовок и блоки текста.
+
+Это учебный прототип, поэтому вместо базы данных обычный JSON-файл: статьи пишутся в него по одной, без проверок, без редактирования и удаления.
+
+## Технологии
+
+Nuxt 3, Vue 3, Editor.js (блоки `header` и `paragraph`), серверные маршруты Nitro.
+
+## Запуск
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Откройте `http://localhost:3000`. Файл `articles.json` создаётся рядом с проектом при первом сохранении.
